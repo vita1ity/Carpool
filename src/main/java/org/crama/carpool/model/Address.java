@@ -19,6 +19,7 @@ public class Address {
 
 	public Address(String country, String town, String street, String houseNumber) {
 		super();
+		this.addressId = -1;
 		this.country = country;
 		this.town = town;
 		this.street = street;

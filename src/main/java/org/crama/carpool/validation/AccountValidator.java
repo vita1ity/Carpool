@@ -59,4 +59,11 @@ public class AccountValidator {
 		}
 		return null;
 	}
+	//TODO
+	public static String validateAccount(String email) {
+		if (!email.matches(EMAIL_PATTERN)) {
+			return WRONG_EMAIL_FORMAT;
+		}
+		return null;
+	}
 }

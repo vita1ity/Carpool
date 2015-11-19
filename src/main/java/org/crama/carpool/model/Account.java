@@ -10,6 +10,8 @@ public class Account {
 	private String phone;
 	private String role;
 	
+	private boolean isApproved;
+	
 	private Address address;
 	private Vehicle vehicle;
 	
@@ -88,6 +90,12 @@ public class Account {
 	}
 	public void setVehicle(Vehicle vehicle) {
 		this.vehicle = vehicle;
+	}
+	public boolean getIsApproved() {
+		return isApproved;
+	}
+	public void setIsApproved(boolean isApproved) {
+		this.isApproved = isApproved;
 	}
 	
 	

@@ -2,32 +2,35 @@ package org.crama.carpool.model;
 
 public class Vehicle {
 	
-	private int vehicleID;
+	private int vehicleId;
 	private String model;
-	private String coutry;
+	private String country;
 	private int year;
 	
-	public Vehicle(int vehicleID, String model, String coutry, int year) {
+	private boolean isApproved;
+	
+	public Vehicle(int vehicleId, String model, String country, int year) {
 		super();
-		this.vehicleID = vehicleID;
+		this.vehicleId = vehicleId;
 		this.model = model;
-		this.coutry = coutry;
+		this.country = country;
 		this.year = year;
 	}
 
-	public Vehicle(String model, String coutry, int year) {
+	public Vehicle(String model, String country, int year) {
 		super();
+		this.vehicleId = -1;
 		this.model = model;
-		this.coutry = coutry;
+		this.country = country;
 		this.year = year;
 	}
 
-	public int getVehicleID() {
-		return vehicleID;
+	public int getVehicleId() {
+		return vehicleId;
 	}
 
-	public void setVehicleID(int vehicleID) {
-		this.vehicleID = vehicleID;
+	public void setVehicleId(int vehicleId) {
+		this.vehicleId = vehicleId;
 	}
 
 	public String getModel() {
@@ -38,12 +41,12 @@ public class Vehicle {
 		this.model = model;
 	}
 
-	public String getCoutry() {
-		return coutry;
+	public String getCountry() {
+		return country;
 	}
 
-	public void setCoutry(String coutry) {
-		this.coutry = coutry;
+	public void setCountry(String country) {
+		this.country = country;
 	}
 
 	public int getYear() {
@@ -53,6 +56,15 @@ public class Vehicle {
 	public void setYear(int year) {
 		this.year = year;
 	}
+
+	public boolean getIsApproved() {
+		return isApproved;
+	}
+
+	public void setIsApproved(boolean isApproved) {
+		this.isApproved = isApproved;
+	}
+	
 	
 	
 }
