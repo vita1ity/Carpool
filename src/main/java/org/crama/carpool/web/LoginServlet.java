@@ -48,14 +48,14 @@ public class LoginServlet extends HttpServlet{
 				HttpSession session = request.getSession(true); 
 				session.setAttribute("admin", loginUser);
 				
-				response.sendRedirect("/carpool/admin");
+				response.sendRedirect(request.getContextPath() + "/admin");
 			}
 			//user
 			else {
 				HttpSession session = request.getSession(true); 
 				session.setAttribute("user", loginUser);
 				
-				response.sendRedirect("/carpool/user-carpool");
+				response.sendRedirect(request.getContextPath() + "/route/manage-carpool");
 			}
 			
 			

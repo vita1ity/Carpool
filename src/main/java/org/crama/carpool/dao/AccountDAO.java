@@ -79,6 +79,64 @@ public class AccountDAO {
 		}
 		return null;
 	}
+	public Account getAccountById(int id) {
+		connection = ConnectionManager.getMySqlConnection();
+		PreparedStatement stmt = null;
+		String query = "SELECT * FROM user WHERE USER_ID = ?";
+		
+		try {
+			stmt = connection.prepareStatement(query);
+			
+			stmt.setInt(1, id);
+			
+			ResultSet rs = stmt.executeQuery();
+			
+			int userIdRS = 0;
+			String usernameRS = null;
+			String passwordRS = null;
+			String emailRS = null;
+			String fullNameRS = null;
+			String phoneRS = null;
+			String roleRS = null;
+			
+			while (rs.next()) {
+				
+				userIdRS = Integer.parseInt(rs.getString("USER_ID"));
+				usernameRS = rs.getString("USERNAME");
+				passwordRS = rs.getString("PASSWORD");
+				emailRS = rs.getString("EMAIL");
+				fullNameRS = rs.getString("FULL_NAME");
+				phoneRS = rs.getString("PHONE");
+				roleRS = rs.getString("ROLE");
+				
+			}
+			if (usernameRS != null) {
+				Account resultUser = new Account(userIdRS, usernameRS, fullNameRS, emailRS, passwordRS, phoneRS, roleRS);
+				
+				return resultUser;
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		finally {
+			if (stmt != null) {
+				try {
+					stmt.close();
+				} catch (SQLException e) {
+					stmt = null;
+				}
+			}
+			if (connection != null) {
+				try {
+					connection.close();
+				} catch (SQLException e) {
+					connection = null;
+				}
+			}
+		}
+		return null;
+	}
 	public void saveAccount(Account newUser) {
 		connection = ConnectionManager.getMySqlConnection();
 		PreparedStatement stmt = null;

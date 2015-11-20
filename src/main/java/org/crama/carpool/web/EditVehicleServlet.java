@@ -39,7 +39,7 @@ public class EditVehicleServlet extends HttpServlet {
 		AccountService accountService = AccountService.getInstance();
 		accountService.editVehicle(userId, vehicle);
 		
-		response.sendRedirect("/carpool/user/account");
+		response.sendRedirect(request.getContextPath() + "/user/account");
 	}
 	
 }

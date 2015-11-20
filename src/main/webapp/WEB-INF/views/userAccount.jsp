@@ -51,7 +51,7 @@
 		<input type="submit" value="Save Profile"/>
 		</p>
 	</form>
-	<form method="POST" action="/carpool/user/edit-vehicle">
+	<form method="POST" action="<c:url value="/user/edit-vehicle"/>">
 		<input type="hidden" name="userId" value="${userInfo.userId}"/>
 		<h3>Vehicle Information:</h3>
 		<input type="hidden" name="vehicleId" value="${userInfo.vehicle.vehicleId}"/>
