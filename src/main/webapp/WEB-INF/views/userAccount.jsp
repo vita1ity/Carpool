@@ -1,77 +1,55 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!doctype html>
+<!DOCTYPE html >
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>User Profile</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+	<title>Account</title>
+	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/style.css" />">
+	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/bootstrap.min.css" />">
+	
+	<link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script src="<c:url value="/resources/js/bootstrap.min.js" />"></script>
 </head>
 <body>
-	<h2>User Profile</h2>
-	<form method="POST" action="<c:url value="/user/edit"/>">
-		<input type="hidden" name="userId" value="${userInfo.userId}"/>
-		<input type="hidden" name="username" value="${userInfo.username}"/>
-		<input type="hidden" name="password" value="${userInfo.password}"/>
-		<h3>General Information:</h3>
-		<p>
-		<span>Username: ${userInfo.username}</span>
-		</p>
-		<p>
-		<span>Full Name</span>
-		<input type="text" name="fullName" value="${userInfo.fullName}"/>
-		</p>
-		<p>
-		<span>Email</span>
-		<input type="text" name="email" value="${userInfo.email}"/>
-		</p>
-		<p>
-		<span>Phone</span>
-		<input type="text" name="phone" value="${userInfo.phone}"/>
-		</p>
-		
-		<h3>Address:</h3>
-		<input type="hidden" name="addressId" value="${userInfo.address.addressId}"/>
-		<p>
-		<span>Country</span>
-		<input type="text" name="country" value="${userInfo.address.country}"/>
-		</p>
-		<p>
-		<span>Town</span>
-		<input type="text" name="town" value="${userInfo.address.town}"/>
-		</p>
-		<p>
-		<span>Street</span>
-		<input type="text" name="street" value="${userInfo.address.street}"/>
-		</p>
-		<p>
-		<span>House number</span>
-		<input type="text" name="houseNumber" value="${userInfo.address.houseNumber}"/>
-		</p>
-		<p>
-		
-		<input type="submit" value="Save Profile"/>
-		</p>
-	</form>
-	<form method="POST" action="<c:url value="/user/edit-vehicle"/>">
-		<input type="hidden" name="userId" value="${userInfo.userId}"/>
-		<h3>Vehicle Information:</h3>
-		<input type="hidden" name="vehicleId" value="${userInfo.vehicle.vehicleId}"/>
-		<p>
-		<span>Car model</span>
-		<input type="text" name="model" value="${userInfo.vehicle.model}"/>
-		</p>
-		<p>
-		<span>Coutry of establishment</span>
-		<input type="text" name="countryEst" value="${userInfo.vehicle.country}"/>
-		</p>
-		<p>
-		<span>Year</span>
-		<input type="text" name="year" value="${userInfo.vehicle.year}"/>
-		</p>
-		<p>
-		<input type="submit" value="Approve Vehicle"/>
-		</p>
-		
-	</form>
+	<%@ include file="header.jsp" %>
 	
+	<div class="wrap">
+		<div class="content">
+			<div class="profl">
+				<a href="<c:url value="/user/account/edit"/>" class="btn btn-primary">Edit Profile</a>
+				<div class="photo"><img src="${userInfo.imageUrl}" height="200" width="200"></div>
+				<div class="desc">
+					<div class="usr">
+						<h2>${userInfo.fullName}</h2>
+						
+						<br />
+						<p><label class="col-md-4 control-label" for="fname">Username</label>&nbsp;${userInfo.username }</p>
+						<p><label class="col-md-4 control-label" for="fname">Email</label>&nbsp;${userInfo.email }</p>
+						<p><label class="col-md-4 control-label" for="fname">Phone Number</label>&nbsp;${userInfo.phone}</p>
+						<br />
+						<h4>Address Info</h4>
+						<br />
+						<p><label class="col-md-4 control-label" for="fname">Country</label>&nbsp;${userInfo.address.country}</p>
+						<p><label class="col-md-4 control-label" for="fname">City</label>&nbsp;${userInfo.address.town}</p>
+						<p><label class="col-md-4 control-label" for="fname">Street</label>&nbsp;${userInfo.address.street}</p>
+						<p><label class="col-md-4 control-label" for="fname">House Number</label>&nbsp;${userInfo.address.houseNumber}</p>
+					</div>
+					
+					<div class="vehicle">
+						<h4>Vehicle Info</h4>
+						<br />
+						<p><label class="col-md-4 control-label" for="fname">Model</label>&nbsp;${userInfo.vehicle.model}</p>
+						<p><label class="col-md-4 control-label" for="fname">Country</label>&nbsp;${userInfo.vehicle.country}</p>
+						<p><label class="col-md-4 control-label" for="fname">Year</label>&nbsp;${userInfo.vehicle.year}</p>
+					</div>
+				</div>
+			</div>
+			
+		</div>
+	</div>
+	
+	<%@ include file="footer.jsp" %>
 </body>
 </html>

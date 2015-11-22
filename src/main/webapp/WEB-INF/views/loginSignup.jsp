@@ -18,7 +18,7 @@
 			<input type="password" name="password" />
 			</p>
 			<c:if test="${not empty requestScope.errorMessageLogin}">
-				<span class="error--message">Your login attempt was not successful, try again.
+				<span class="error-message">Your login attempt was not successful, try again.<br/>
 				Reason: ${requestScope.errorMessageLogin}</span>
 			</c:if> 
 			
@@ -36,10 +36,6 @@
 			</p>
 			<span>E-mail</span>
 			<input type="text" name="email" />
-			<p>
-			<span>Phone</span>
-			<input type="text" name="phone" />
-			</p>
 			<p>
 			<span>Password</span>
 			<input type="password" name="password" />

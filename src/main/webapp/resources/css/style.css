@@ -1,0 +1,271 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td {
+  border: 0;
+  font-family: inherit;
+  font-size: 100%;
+  font-style: inherit;
+  font-weight: inherit;
+  margin: 0;
+  outline: 0;
+  padding: 0;
+  vertical-align: baseline;
+}
+:focus {/* remember to define focus styles! */
+  outline: 0;
+}
+
+body {
+  background: #fff;
+  line-height: 1;
+  min-width: 1050px;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+table {/* tables still need 'cellspacing="0"' in the markup */
+  border-collapse: separate;
+  border-spacing: 0;
+}
+caption, th, td {
+  font-weight: normal;
+  text-align: left;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: "";
+}
+blockquote, q {
+  quotes: "" "";
+}
+a img {
+  border: 0;
+}
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+h1,h2,h3,h4,h5,h6{
+  font-weight:normal;
+}
+
+/*---------header---------------*/
+.head {
+	width: 100%;
+	height: 61px;
+	position: relative;
+}
+.logo {
+	position: relative;
+	float: left;
+}
+.btn {
+	position: relative;
+	float: right;
+}
+.menu {
+	position: absolute;
+	margin-top: 5px;
+	margin-left: 200px;
+}
+.main_head{
+    background: #252525;
+    padding: 20px 0;
+}
+/*------------------------------*/
+
+.clean {
+	clear: both;
+}
+
+body{
+    min-width: 1000px;
+	height:100%;
+}
+
+html {
+	height:100%;
+}
+
+a{
+    transition: all .2s;
+    text-decoration: none !important;
+	color:#fff !important;
+}
+
+h1 {
+	font-size: 36px;
+}
+h2 {
+	font-size: 24px;
+	font-weight: 600;
+	margin-top: 0 !important;
+}
+h3 {
+	font-size: 20px;
+}
+h4{
+	font-size: 18px;
+	color: #090909  !important;
+}
+h5{
+	font-size: 16px !important;
+}
+
+.wrap{
+    width: 1000px;
+    margin: auto;
+	min-height:100%;
+}
+
+.landing {
+    background-image: url('/carpool/resources/img/bg.jpg');
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-position: 100% 100%;
+    background-size: cover;
+    /*background-color: #384a5e;*/
+    color: #fff;
+    position: relative;
+    height: 100vh;
+    min-height: 600px;
+}
+.land_main {
+	position:absolute;
+	left:50%;
+	top:50%;
+	transform: translate(-50%,-50%);
+	-webkit-transform: translate(-50%,-50%);
+	-moz-transform: translate(-50%,-50%);
+	margin:auto;
+	width: 300px;
+	text-align:center;
+}
+.lnav {
+	border-color:yellow;
+	border-width: 3px;
+	border-style: solid;
+	display: block;
+	padding-bottom:20px;
+	padding-top:20px;
+	width: 296px;
+	width:100%;
+	text-align:center;
+	margin:auto;
+	font-size: 20px;
+}
+.start{
+	padding: 0 30px 0 30px;
+}
+.llogo,.logo{
+	color:yellow;
+	font-family: "Kaushan Script","Helvetica Neue", Helvetica,Arial, cursive;
+	font-size: 36px;
+}
+.landlogo{
+	font-size:3.5em;
+	padding-bottom: 50px;
+}
+.login{
+	border-color:#fff;
+	border-width: 2px;
+	border-style: solid;
+	border-radius: 13px;
+	padding: 10px 17px;
+	position:relative;
+	float:right;
+}
+.loginzone{
+	position:relative;
+	width: 100%;
+	padding-top: 35px;
+}
+/*____________Edit_Profile_________*/
+.f{	
+	padding: 20px 0;
+	background: #252525;
+}
+.f p {
+	color: #fff;
+}
+.content{
+	margin:30px auto;
+}
+/*___________Profile_______*/
+.photo {
+	border-radius: 50px;
+	width: 200px;
+	position:relative;
+	float: left;
+	margin: 0 20px 0 0;
+}
+.desc {
+	width: 400px;
+	position:relative;
+	float: left;
+	margin: 0 20px 0 20px;
+}
+.usrprofl{
+	position: relative;
+}
+.name {
+	color: #090909;
+}
+.usr, .vehicle {
+	border-color: grey;
+	border-width: 1px;
+	border-style: solid;
+	padding: 15px;
+	margin-bottom: 30px;
+}
+.usr{
+	min-height: 100%;
+}
+.usr h4, .usr h2, .vehicle h4 {
+	text-align:center;
+}
+.blue a {
+	color: blue !important;
+}
+.container {
+    width: 1000px !important;
+	margin:0 !important;
+	padding:0 !important;
+}
+.btns{
+	margin-left:20px !important;
+}
+.rout {
+	margin: 40px auto;
+	border-color: grey;
+	border-width: 1px;
+	border-style: solid;
+	padding: 50px;
+}
+/*------------notifications-----------*/
+.unread{
+	background-color: #C8C8C8;
+	color: #000;
+}
+.read, .unread{
+	border-color:#707070;
+	border-width: 2px;
+	border-style: solid;
+	padding: 20px;
+	margin: 30px 0;
+}
+/*---------Admin----------*/
+.adm{
+	background-color: #990000 !important;
+}
+.error-message {
+	color:red;
+	text-align: center;
+}

@@ -147,7 +147,7 @@ public class RouteDAO {
 		}
 		return null;
 	}
-	private List<Passenger> getApprovedPassengers(int routeId, int userId) {
+	public List<Passenger> getApprovedPassengers(int routeId, int userId) {
 		List<Passenger> routePassengers = new ArrayList<Passenger>();
 		AccountDAO accountDAO = AccountDAO.getInstance();
 		

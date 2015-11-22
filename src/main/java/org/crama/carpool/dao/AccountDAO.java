@@ -40,6 +40,7 @@ public class AccountDAO {
 			String fullNameRS = null;
 			String phoneRS = null;
 			String roleRS = null;
+			String imageUrl = null;
 			
 			while (rs.next()) {
 				
@@ -50,10 +51,11 @@ public class AccountDAO {
 				fullNameRS = rs.getString("FULL_NAME");
 				phoneRS = rs.getString("PHONE");
 				roleRS = rs.getString("ROLE");
+				imageUrl = rs.getString("IMAGE_URL");
 				
 			}
 			if (usernameRS != null) {
-				Account resultUser = new Account(userIdRS, usernameRS, fullNameRS, emailRS, passwordRS, phoneRS, roleRS);
+				Account resultUser = new Account(userIdRS, usernameRS, fullNameRS, emailRS, passwordRS, phoneRS, roleRS, imageUrl);
 				
 				return resultUser;
 			}
@@ -98,6 +100,7 @@ public class AccountDAO {
 			String fullNameRS = null;
 			String phoneRS = null;
 			String roleRS = null;
+			String imageUrl = null;
 			
 			while (rs.next()) {
 				
@@ -108,10 +111,11 @@ public class AccountDAO {
 				fullNameRS = rs.getString("FULL_NAME");
 				phoneRS = rs.getString("PHONE");
 				roleRS = rs.getString("ROLE");
+				imageUrl = rs.getString("IMAGE_URL");
 				
 			}
 			if (usernameRS != null) {
-				Account resultUser = new Account(userIdRS, usernameRS, fullNameRS, emailRS, passwordRS, phoneRS, roleRS);
+				Account resultUser = new Account(userIdRS, usernameRS, fullNameRS, emailRS, passwordRS, phoneRS, roleRS, imageUrl);
 				
 				return resultUser;
 			}
@@ -140,7 +144,7 @@ public class AccountDAO {
 	public void saveAccount(Account newUser) {
 		connection = ConnectionManager.getMySqlConnection();
 		PreparedStatement stmt = null;
-		String saveQuery = "INSERT INTO user (USERNAME, FULL_NAME, EMAIL, PASSWORD, PHONE, ROLE) "
+		String saveQuery = "INSERT INTO user (USERNAME, FULL_NAME, EMAIL, PASSWORD, PHONE, ROLE, IMAGE_URL) "
 						+ "VALUES (?,?,?,?,?,?)";
 		try {
 			stmt = connection.prepareStatement(saveQuery);
@@ -151,8 +155,9 @@ public class AccountDAO {
 			stmt.setString(4, newUser.getPassword());
 			stmt.setString(5, newUser.getPhone());
 			stmt.setString(6, newUser.getRole());
+			stmt.setString(7, newUser.getImageUrl());
 		
-			int row = stmt.executeUpdate();
+			stmt.executeUpdate();
 			System.out.println("User saved in the database");
 			
 			
@@ -177,6 +182,7 @@ public class AccountDAO {
 		}
 	}
 	public Account getFullAccount(int userId) {
+		System.out.println("geFullAccount - userId: " + userId);
 		connection = ConnectionManager.getMySqlConnection();
 		PreparedStatement stmt = null;
 		String query = "SELECT * FROM user WHERE USER_ID = ?";
@@ -195,6 +201,7 @@ public class AccountDAO {
 			String fullNameRS = null;
 			String phoneRS = null;
 			String roleRS = null;
+			String imageUrl = null;
 			
 			boolean isApproved = false;
 			Integer addressId = null;
@@ -210,26 +217,31 @@ public class AccountDAO {
 				phoneRS = rs.getString("PHONE");
 				roleRS = rs.getString("ROLE");
 				isApproved = rs.getBoolean("IS_APPROVED");
+				imageUrl = rs.getString("IMAGE_URL");
 				
 				addressId = rs.getInt("ADDRESS_ID");
 				vehicleId = rs.getInt("VEHICLE_ID");
 				
-			}
-			if (usernameRS != null) {
-				Account resultUser = new Account(userIdRS, usernameRS, fullNameRS, emailRS, passwordRS, phoneRS, roleRS);
-				resultUser.setIsApproved(isApproved);
-				
-				if (addressId != null) {
-					Address address = getAddress(addressId);
-					resultUser.setAddress(address);
+				if (usernameRS != null) {
+					Account resultUser = new Account(userIdRS, usernameRS, fullNameRS, emailRS, passwordRS, phoneRS, roleRS, imageUrl);
+					resultUser.setIsApproved(isApproved);
+					
+					System.out.println("Acount from db: " + resultUser);
+					
+					if (addressId != null) {
+						Address address = getAddress(addressId);
+						resultUser.setAddress(address);
+					}
+					if (vehicleId != null) {
+						Vehicle vehicle = getVehicle(vehicleId);
+						resultUser.setVehicle(vehicle);
+					}
+					
+					return resultUser;
 				}
-				if (vehicleId != null) {
-					Vehicle vehicle = getVehicle(vehicleId);
-					resultUser.setVehicle(vehicle);
-				}
 				
-				return resultUser;
 			}
+			
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -252,7 +264,7 @@ public class AccountDAO {
 		}
 		return null;
 	}
-	private Vehicle getVehicle(Integer vehicleId) {
+	public Vehicle getVehicle(Integer vehicleId) {
 		connection = ConnectionManager.getMySqlConnection();
 		PreparedStatement stmt = null;
 		String query = "SELECT * FROM vehicle WHERE VEHICLE_ID = ?";
@@ -346,7 +358,7 @@ public class AccountDAO {
 		return -1;
 	}
 	
-	private Address getAddress(Integer addressId) {
+	public Address getAddress(Integer addressId) {
 		connection = ConnectionManager.getMySqlConnection();
 		PreparedStatement stmt = null;
 		String query = "SELECT * FROM address WHERE ADDRESS_ID = ?";

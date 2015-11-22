@@ -17,16 +17,12 @@ import org.crama.carpool.validation.AccountValidator;
 @WebServlet("/signup")
 public class SignUpServlet extends HttpServlet {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 7302566429048671209L;
 	
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String username = request.getParameter("username");
 		String email = request.getParameter("email");
-		String phone = request.getParameter("phone");
 		String password = request.getParameter("password");
 		String confirmPassword = request.getParameter("confirmPassword");
 		
@@ -35,16 +31,17 @@ public class SignUpServlet extends HttpServlet {
 		
 		request.setAttribute("errorMessageReg", errorMessage);
 		if (errorMessage != null) {
-			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/loginSignup.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("/index.jsp");
 			rd.forward(request, response);
 		}
 		else {
-			Account newUser = new Account(username, email, password, phone, "user");
+			Account newUser = new Account(username, email, password, null, "user", null);
 			accountService.saveAccount(newUser);
+			Account userFromDB = accountService.getAccount(username);
 			HttpSession session = request.getSession(true); 
-			session.setAttribute("user", newUser);
+			session.setAttribute("user", userFromDB);
 			
-			response.sendRedirect("/carpool/user");
+			response.sendRedirect(request.getContextPath() + "/user/account");
 			
 		}
 	}

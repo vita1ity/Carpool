@@ -21,9 +21,9 @@ public class AccountService {
 	public Account getAccount(String username) {	
 		return accountDAO.getAccount(username);
 	}
-	public Account getFullAccountInfo(int userId) {
+	/*public Account getFullAccountInfo(int userId) {
 		return accountDAO.getFullAccount(userId);
-	}
+	}*/
 	public void saveAccount(Account newUser) {
 		accountDAO.saveAccount(newUser);
 		
@@ -64,4 +64,11 @@ public class AccountService {
 		}
 	}
 	
+	public Account getAccountById(int userId) {
+		return accountDAO.getAccountById(userId);
+	}
+	public Vehicle getVehicle(int vehicleId) {
+		
+		return accountDAO.getVehicle(vehicleId);
+	}
 }

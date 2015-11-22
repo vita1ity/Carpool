@@ -37,7 +37,7 @@ public class LoginServlet extends HttpServlet{
 		
 		request.setAttribute("errorMessageLogin", errorMessage);
 		if (errorMessage != null) {
-			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/loginSignup.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("/index.jsp");
 			rd.forward(request, response);
 		}
 		else {
@@ -48,7 +48,7 @@ public class LoginServlet extends HttpServlet{
 				HttpSession session = request.getSession(true); 
 				session.setAttribute("admin", loginUser);
 				
-				response.sendRedirect(request.getContextPath() + "/admin");
+				response.sendRedirect(request.getContextPath() + "/admin/accounts");
 			}
 			//user
 			else {

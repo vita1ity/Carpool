@@ -8,8 +8,11 @@
 <body>
 	<a href="<c:url value="/user/account" />">User Account</a>
 	<a href="<c:url value="/inventory" />">Carpool Inventory</a>
+	<a href="<c:url value="/notifications" />">Notifications</a>
 	
 	<a href="<c:url value="/route/add" />">Add route</a>
+	
+	<a href="<c:url value="/logout" />">Log Out</a>
 	
 	<h2>My Routes</h2>
 	<c:forEach var="route" items="${userRoutes}">
@@ -25,8 +28,8 @@
 		
 		<p>Passengers:</p>
 		<c:forEach var="pass" items="${route.passengers}" varStatus="counter">
-			<p>${counter.index + 1}. ${passenger.user.fullName} </p>
-			<p>Picking time: ${passenger.pickTime}</p>
+			<p>${counter.index + 1}. ${pass.user.fullName} </p>
+			<p>Picking time: ${pass.pickTime}</p>
 		</c:forEach>
 		<a href="<c:url value="/route/delete/${route.routeId}"/>">Delete Route</a>
 	</c:forEach>
@@ -60,9 +63,10 @@
 			
 		</c:forEach>
 		<a href="<c:url value="/route/unjoin/${route.routeId}"/>">Unjoin Route</a>
-		<form action="<c:url value='route/reminder' />" method="POST" >
+		<form action="<c:url value='/route/reminder' />" method="POST" >
 			<p><span>Driver Reminder: </span>
-			<textarea name="reminder"></textarea></p>
+			<input type="hidden" name="to" value="${route.owner.userId}" />
+			<textarea name="message"></textarea></p>
 			<input type="submit" value="Remind the Driver"/>
 		</form>
 	</c:forEach>

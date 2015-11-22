@@ -10,12 +10,14 @@ public class Account {
 	private String phone;
 	private String role;
 	
+	private String imageUrl;
+	
 	private boolean isApproved;
 	
 	private Address address;
 	private Vehicle vehicle;
 	
-	public Account(int userId, String username, String fullName, String email, String password, String phone, String role) {
+	public Account(int userId, String username, String fullName, String email, String password, String phone, String role, String imageUrl) {
 		super();
 		this.userId = userId;
 		this.username = username;
@@ -24,8 +26,9 @@ public class Account {
 		this.password = password;
 		this.phone = phone;
 		this.role = role;
+		this.imageUrl = imageUrl;
 	}
-	public Account(String username, String email, String password, String phone, String role) {
+	public Account(String username, String email, String password, String phone, String role, String imageUrl) {
 		super();
 		
 		this.username = username;
@@ -33,6 +36,7 @@ public class Account {
 		this.password = password;
 		this.phone = phone;
 		this.role = role;
+		this.imageUrl = imageUrl;
 	}
 	
 	public int getUserId() {
@@ -96,6 +100,12 @@ public class Account {
 	}
 	public void setIsApproved(boolean isApproved) {
 		this.isApproved = isApproved;
+	}
+	public String getImageUrl() {
+		return imageUrl;
+	}
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
 	}
 	
 	
