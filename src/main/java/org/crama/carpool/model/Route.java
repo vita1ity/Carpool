@@ -17,11 +17,13 @@ public class Route {
 	private List<Passenger> passengers;
 	private Account owner;
 	
+	private String mapUrl;
+	
 	private boolean isApproved;
 	
 	
 	public Route(String name, String sourceAddress, String destinationAddress, LocalTime startTime, LocalTime endTime, String comment,
-			int numOfPassengers, int freePlaces, List<Passenger> passengers, Account owner, boolean isApproved) {
+			int numOfPassengers, int freePlaces, String mapUrl, List<Passenger> passengers, Account owner, boolean isApproved) {
 		super();
 		this.name = name;
 		this.sourceAddress = sourceAddress;
@@ -31,6 +33,7 @@ public class Route {
 		this.comment = comment;
 		this.numOfPassengers = numOfPassengers;
 		this.freePlaces = freePlaces;
+		this.mapUrl = mapUrl;
 		this.passengers = passengers;
 		this.owner = owner;
 		this.isApproved = isApproved;
@@ -38,7 +41,7 @@ public class Route {
 	
 	
 	public Route(int routeId, String name, String sourceAddress, String destinationAddress, LocalTime startTime,
-			LocalTime endTime, String comment, int numOfPassengers, int freePlaces, List<Passenger> passengers,
+			LocalTime endTime, String comment, int numOfPassengers, int freePlaces, String mapUrl, List<Passenger> passengers,
 			Account owner, boolean isApproved) {
 		super();
 		this.routeId = routeId;
@@ -50,12 +53,23 @@ public class Route {
 		this.comment = comment;
 		this.numOfPassengers = numOfPassengers;
 		this.freePlaces = freePlaces;
+		this.mapUrl = mapUrl;
 		this.passengers = passengers;
 		this.owner = owner;
 		this.isApproved = isApproved;
 	}
 
 
+
+
+	public String getMapUrl() {
+		return mapUrl;
+	}
+
+
+	public void setMapUrl(String mapUrl) {
+		this.mapUrl = mapUrl;
+	}
 
 
 	public int getRouteId() {

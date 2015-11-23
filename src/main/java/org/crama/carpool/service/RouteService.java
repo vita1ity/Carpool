@@ -1,5 +1,6 @@
 package org.crama.carpool.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.crama.carpool.dao.RouteDAO;
@@ -52,6 +53,20 @@ public class RouteService {
 	public void removeRoute(int routeId) {
 		routeDAO.removeRoute(routeId);
 		
+	}
+	public List<Route> searchRoutes(int userId, String searchString) {
+		
+		List<Route> approvedRoutes = routeDAO.getApprovedRoutes(userId);
+		List<Route> searchResults = new ArrayList<Route>();
+		for (Route route: approvedRoutes) {
+			String search = searchString.toLowerCase();
+			String source = route.getSourceAddress().toLowerCase();
+			String destination = route.getDestinationAddress().toLowerCase();
+			if (source.contains(search) || destination.contains(search)) {
+				searchResults.add(route);
+			}
+		}
+		return searchResults;
 	}
 	
 }

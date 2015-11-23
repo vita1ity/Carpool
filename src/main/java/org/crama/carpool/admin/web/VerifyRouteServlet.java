@@ -9,14 +9,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.crama.carpool.admin.service.RouteServiceAdmin;
+import org.crama.carpool.model.Passenger;
 import org.crama.carpool.model.Route;
+import org.crama.carpool.util.Util;
 
-@WebServlet("/admin/routes/verify/*")
+@WebServlet("/admin/routes/verify")
 public class VerifyRouteServlet extends HttpServlet {
 	
 	private static final long serialVersionUID = -4330401124590362408L;
 
-	@Override
+	/*@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String[] pathInfo = request.getPathInfo().split("/");
@@ -34,5 +36,24 @@ public class VerifyRouteServlet extends HttpServlet {
 			response.sendRedirect(request.getContextPath() + "/admin/routes");
 			
 		}
+	}*/
+	@Override
+	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		int routeId = Integer.parseInt(request.getParameter("routeId"));
+		String mapUrl = request.getParameter("mapUrl");
+		
+		
+		RouteServiceAdmin routeAdminService = RouteServiceAdmin.getInstance();
+		
+		Route route = routeAdminService.getRoute(routeId);
+		
+		route.setIsApproved(true);
+		route.setMapUrl(mapUrl);
+		routeAdminService.editRoute(route);
+		
+		response.sendRedirect(request.getContextPath() + "/admin/routes");
+		
+		
 	}
 }

@@ -54,6 +54,7 @@ public class RouteDAOAdmin {
 			String endTime = null;
 			String comment = null;
 			int numOfPassengers = 0;
+			String mapUrl = null;
 			boolean isApproved = false;
 			
 			while (rs.next()) {
@@ -67,6 +68,7 @@ public class RouteDAOAdmin {
 				endTime = rs.getString("END_TIME");
 				comment = rs.getString("COMMENT");
 				numOfPassengers = rs.getInt("NUM_OF_PASS");
+				mapUrl = rs.getString("MAP_URL");
 				isApproved = rs.getBoolean("IS_APPROVED");
 				
 				if (routeId != 0) {
@@ -78,7 +80,7 @@ public class RouteDAOAdmin {
 					LocalTime end = Util.createTime(endTime);
 					int freePlaces = numOfPassengers - passengerList.size();
 					Route route = new Route(routeId, name, sourceAddress, destAddress, start, end, comment, numOfPassengers,
-							freePlaces, passengerList, owner, isApproved);
+							freePlaces, mapUrl, passengerList, owner, isApproved);
 					
 					unverifiedRoutes.add(route);
 				}
@@ -130,6 +132,7 @@ public class RouteDAOAdmin {
 			String endTime = null;
 			String comment = null;
 			int numOfPassengers = 0;
+			String mapUrl = null;
 			boolean isApproved = false;
 			
 			while (rs.next()) {
@@ -143,6 +146,7 @@ public class RouteDAOAdmin {
 				endTime = rs.getString("END_TIME");
 				comment = rs.getString("COMMENT");
 				numOfPassengers = rs.getInt("NUM_OF_PASS");
+				mapUrl = rs.getString("MAP_URL");
 				isApproved = rs.getBoolean("IS_APPROVED");
 				
 				if (routeId != 0) {
@@ -154,7 +158,7 @@ public class RouteDAOAdmin {
 					LocalTime end = Util.createTime(endTime);
 					int freePlaces = numOfPassengers - passengerList.size();
 					Route route = new Route(routeId, name, sourceAddress, destAddress, start, end, comment, numOfPassengers,
-							freePlaces, passengerList, owner, isApproved);
+							freePlaces, mapUrl, passengerList, owner, isApproved);
 					return route;
 				}
 			}
@@ -184,13 +188,15 @@ public class RouteDAOAdmin {
 	public void updateRoute(Route route) {
 		connection = ConnectionManager.getMySqlConnection();
 		PreparedStatement stmt = null;
-		String saveQuery = "UPDATE route SET IS_APPROVED = ? "
+		String saveQuery = "UPDATE route SET IS_APPROVED = ?, MAP_URL = ? "
 				+ "WHERE ROUTE_ID = ?";
 		try {
 			stmt = connection.prepareStatement(saveQuery);
 			
-			stmt.setBoolean(1, true);
-			stmt.setInt(2, route.getRouteId());
+			stmt.setBoolean(1, route.getIsApproved());
+			stmt.setString(2, route.getMapUrl());
+			stmt.setInt(3, route.getRouteId());
+			
 			
 			stmt.executeUpdate();
 			System.out.println("Route updated in the database");

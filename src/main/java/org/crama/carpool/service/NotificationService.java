@@ -1,5 +1,6 @@
 package org.crama.carpool.service;
 
+import java.util.Collections;
 import java.util.List;
 
 import org.crama.carpool.dao.NotificationDAO;
@@ -21,8 +22,10 @@ public class NotificationService {
 	public void addNotification(Notification notif) {
 		notificationDAO.saveNotification(notif);
 	}
-	public List<Notification> getUserNotifications(int userId) {	
-		return notificationDAO.getUserNotifications(userId);
+	public List<Notification> getUserNotifications(int userId) {
+		List<Notification> notifs = notificationDAO.getUserNotifications(userId);
+		Collections.sort(notifs);
+		return notifs;
 	}
 	public void markAsSeen(List<Notification> notifications) {
 		for (Notification n: notifications) {

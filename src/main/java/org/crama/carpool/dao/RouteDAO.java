@@ -29,8 +29,8 @@ public class RouteDAO {
 	public void saveRoute(Route route) {
 		connection = ConnectionManager.getMySqlConnection();
 		PreparedStatement stmt = null;
-		String saveQuery = "INSERT INTO route (OWNER_ID, SOURCE_ADDRESS, DEST_ADDRESS, START_TIME, END_TIME, COMMENT, NUM_OF_PASS, IS_APPROVED, NAME) "
-						+ "VALUES (?,?,?,?,?,?,?,?,?)";
+		String saveQuery = "INSERT INTO route (OWNER_ID, SOURCE_ADDRESS, DEST_ADDRESS, START_TIME, END_TIME, COMMENT, NUM_OF_PASS, MAP_URL, IS_APPROVED, NAME) "
+						+ "VALUES (?,?,?,?,?,?,?,?,?,?)";
 		try {
 			stmt = connection.prepareStatement(saveQuery);
 			
@@ -43,10 +43,11 @@ public class RouteDAO {
 			stmt.setString(5, route.getEndTime().format(formatter));
 			stmt.setString(6, route.getComment());
 			stmt.setInt(7, route.getNumOfPassengers());
-			stmt.setBoolean(8, route.getIsApproved());
-			stmt.setString(9, route.getName());
+			stmt.setString(8, route.getMapUrl());
+			stmt.setBoolean(9, route.getIsApproved());
+			stmt.setString(10, route.getName());
 		
-			int row = stmt.executeUpdate();
+			stmt.executeUpdate();
 			System.out.println("Route saved in the database");
 			
 			
@@ -95,6 +96,7 @@ public class RouteDAO {
 			String endTime = null;
 			String comment = null;
 			int numOfPassengers = 0;
+			String mapUrl = null;
 			boolean isApproved = false;
 			
 			while (rs.next()) {
@@ -108,6 +110,7 @@ public class RouteDAO {
 				endTime = rs.getString("END_TIME");
 				comment = rs.getString("COMMENT");
 				numOfPassengers = rs.getInt("NUM_OF_PASS");
+				mapUrl = rs.getString("MAP_URL");
 				isApproved = rs.getBoolean("IS_APPROVED");
 				
 				if (routeId != 0) {
@@ -119,7 +122,7 @@ public class RouteDAO {
 					LocalTime end = Util.createTime(endTime);
 					int freePlaces = numOfPassengers - passengerList.size();
 					Route route = new Route(routeId, name, sourceAddress, destAddress, start, end, comment, numOfPassengers,
-							freePlaces, passengerList, owner, isApproved);
+							freePlaces, mapUrl, passengerList, owner, isApproved);
 					
 					userRouteList.add(route);
 				}
@@ -239,6 +242,7 @@ public class RouteDAO {
 			String endTime = null;
 			String comment = null;
 			int numOfPassengers = 0;
+			String mapUrl = null;
 			boolean isApproved = false;
 			
 			while (rs.next()) {
@@ -252,6 +256,7 @@ public class RouteDAO {
 				endTime = rs.getString("END_TIME");
 				comment = rs.getString("COMMENT");
 				numOfPassengers = rs.getInt("NUM_OF_PASS");
+				mapUrl = rs.getString("MAP_URL");
 				isApproved = rs.getBoolean("IS_APPROVED");
 				System.out.println(routeId + ", " + userId + ", " + ownerId);
 				if (routeId != 0 && ownerId != userId) {
@@ -263,7 +268,7 @@ public class RouteDAO {
 					LocalTime end = Util.createTime(endTime);
 					int freePlaces =  numOfPassengers - passengerList.size();
 					Route route = new Route(routeId, name, sourceAddress, destAddress, start, end, comment, numOfPassengers,
-							freePlaces, passengerList, owner, isApproved);
+							freePlaces, mapUrl, passengerList, owner, isApproved);
 					
 					
 					userRouteList.add(route);
@@ -316,6 +321,7 @@ public class RouteDAO {
 			String endTime = null;
 			String comment = null;
 			int numOfPassengers = 0;
+			String mapUrl = null;
 			boolean isApproved = false;
 			
 			while (rs.next()) {
@@ -329,6 +335,7 @@ public class RouteDAO {
 				endTime = rs.getString("END_TIME");
 				comment = rs.getString("COMMENT");
 				numOfPassengers = rs.getInt("NUM_OF_PASS");
+				mapUrl = rs.getString("MAP_URL");
 				isApproved = rs.getBoolean("IS_APPROVED");
 				
 				if (routeId != 0 && ownerId != userId) {
@@ -349,7 +356,7 @@ public class RouteDAO {
 						LocalTime end = Util.createTime(endTime);
 						int freePlaces = numOfPassengers - passengerList.size();
 						Route route = new Route(routeId, name, sourceAddress, destAddress, start, end, comment, numOfPassengers,
-								freePlaces, passengerList, owner, isApproved);
+								freePlaces, mapUrl, passengerList, owner, isApproved);
 						
 						userRouteList.add(route);
 					}

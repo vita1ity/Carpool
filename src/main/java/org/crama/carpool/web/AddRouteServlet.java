@@ -68,7 +68,7 @@ public class AddRouteServlet extends HttpServlet {
 			int numPass = Integer.parseInt(numOfPassengers);
 			
 			Route route = new Route(routeName, sourceAddress, destinationAddress, startTimeLocal, endTimeLocal, 
-					rideComment, numPass, numPass, null, user, false);
+					rideComment, numPass, numPass, null, null, user, false);
 			RouteService routeService = RouteService.getInstance();
 			routeService.addRoute(route);
 			

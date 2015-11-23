@@ -249,6 +249,24 @@ h5{
 	border-style: solid;
 	padding: 50px;
 }
+.reminder{
+	width: 400px;
+	display: inline-block;
+	margin-top:50px;
+}
+.reminder textarea{
+	display:inline-block;
+}
+.rem{
+	display: inline-block;
+	vertical-align: top;
+	padding-top:15px;
+}
+.send{
+	display: inline-block !important;
+	vertical-align: top !important;
+	margin-top:5px !important;	
+}
 /*------------notifications-----------*/
 .unread{
 	background-color: #C8C8C8;
@@ -263,9 +281,22 @@ h5{
 }
 /*---------Admin----------*/
 .adm{
-	background-color: #990000 !important;
+	background-color: #35284A !important;
 }
 .error-message {
 	color:red;
 	text-align: center;
+}
+.verify_btn {
+	margin-top: 30px;
+	margin-bottom: 100px;
+}
+.searchbox {
+	width:50%;
+	margin-left: 630px;
+   	margin-bottom: 50px;
+}
+.message_area {
+	min-width: 680px;
+    min-height: 80px;
 }

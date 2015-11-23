@@ -32,5 +32,19 @@ public class CarpoolInventoryServlet extends HttpServlet {
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/carpoolInventory.jsp");
 	      rd.forward(request, response);
 	}
-	
+	@Override
+	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		HttpSession session = request.getSession();
+		Account user = (Account)session.getAttribute("user");
+		
+		String searchString = request.getParameter("searchString");
+		
+		RouteService routeService = RouteService.getInstance();
+		List<Route> routes = routeService.searchRoutes(user.getUserId(), searchString);
+		request.setAttribute("routes", routes);
+		
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/carpoolInventory.jsp");
+	      rd.forward(request, response);
+	}
 }

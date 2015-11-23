@@ -145,7 +145,7 @@ public class AccountDAO {
 		connection = ConnectionManager.getMySqlConnection();
 		PreparedStatement stmt = null;
 		String saveQuery = "INSERT INTO user (USERNAME, FULL_NAME, EMAIL, PASSWORD, PHONE, ROLE, IMAGE_URL) "
-						+ "VALUES (?,?,?,?,?,?)";
+						+ "VALUES (?,?,?,?,?,?,?)";
 		try {
 			stmt = connection.prepareStatement(saveQuery);
 			
@@ -489,7 +489,7 @@ public class AccountDAO {
 	public void editAccount(Account account) {
 		connection = ConnectionManager.getMySqlConnection();
 		PreparedStatement stmt = null;
-		String saveQuery = "UPDATE user SET USERNAME = ?, FULL_NAME = ?, EMAIL = ?, PASSWORD = ?, PHONE = ?, ROLE = ?, IS_APPROVED = ?,"
+		String saveQuery = "UPDATE user SET USERNAME = ?, FULL_NAME = ?, EMAIL = ?, PASSWORD = ?, PHONE = ?, ROLE = ?, IS_APPROVED = ?, IMAGE_URL = ?,"
 				+ " ADDRESS_ID = ? "
 				+ "WHERE USER_ID = ?";
 		try {
@@ -505,8 +505,9 @@ public class AccountDAO {
 			stmt.setString(5, account.getPhone());
 			stmt.setString(6, account.getRole());
 			stmt.setBoolean(7, account.getIsApproved());
-			stmt.setInt(8, account.getAddress().getAddressId());
-			stmt.setInt(9, account.getUserId());
+			stmt.setString(8, account.getImageUrl());
+			stmt.setInt(9, account.getAddress().getAddressId());
+			stmt.setInt(10, account.getUserId());
 			
 			stmt.executeUpdate();
 			System.out.println("Account updated in the database");
